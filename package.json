@@ -1,5 +1,5 @@
 {
-  "name": "jp-lyrics",
+  "name": "furioke",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,6 +10,8 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "kuromoji": "^0.1.2",
+    "lucide-react": "^0.577.0",
     "next": "16.1.6",
     "react": "19.2.3",
     "react-dom": "19.2.3"
@@ -22,6 +24,7 @@
     "eslint": "^9.39.4",
     "eslint-config-next": "16.1.6",
     "eslint-plugin-simple-import-sort": "^12.1.1",
+    "gh-pages": "^6.3.0",
     "husky": "^9.1.7",
     "prettier": "^3.8.1",
     "prettier-plugin-tailwindcss": "^0.7.2",
