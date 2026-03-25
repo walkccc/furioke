@@ -18,7 +18,6 @@ import { parseToHtml } from '@/lib/parser';
 
 export default function Page() {
   const [lyrics, setLyrics] = useState<string>('');
-  const [prevLyrics, setPrevLyrics] = useState<string | null>(null);
   const [title, setTitle] = useState<string>('');
   const [layout, setLayout] = useState<Layout>('both');
   const [isAnalyzing, setIsAnalyzing] = useState<boolean>(false);
@@ -75,7 +74,6 @@ export default function Page() {
     setIsAnalyzing(true);
     try {
       const result = await generateFurigana(lyrics);
-      setPrevLyrics(lyrics);
       setLyrics(result);
     } finally {
       setIsAnalyzing(false);
@@ -83,9 +81,7 @@ export default function Page() {
   }
 
   function handleRevert() {
-    if (prevLyrics === null) return;
-    setLyrics(prevLyrics);
-    setPrevLyrics(null);
+    setLyrics((v) => v.replace(/｜([^｜\n]+)｜[^｜\n]+｜/g, '$1'));
   }
 
   function handleExport() {
@@ -188,7 +184,7 @@ ruby { break-inside: avoid; }
             <Toolbar
               onGenerate={handleGenerate}
               isAnalyzing={isAnalyzing}
-              canRevert={prevLyrics !== null}
+              canRevert={/｜[^｜\n]+｜[^｜\n]+｜/.test(lyrics)}
               onRevert={handleRevert}
               layout={layout}
               onToggleLayout={cycleLayout}
