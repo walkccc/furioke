@@ -1,6 +1,6 @@
-@import "tailwindcss";
-@import "tw-animate-css";
-@import "shadcn/tailwind.css";
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -55,7 +55,7 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
+  --primary: oklch(0.55 0.07 140);
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
@@ -126,5 +126,36 @@
   }
   html {
     @apply font-sans;
+  }
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    font-family:
+      'Noto Serif JP', 'Hiragino Mincho ProN', 'Yu Mincho', serif !important;
+    font-size: 14pt !important;
+    line-height: 2 !important;
+    color: #000 !important;
+    background: #fff !important;
+  }
+
+  ruby rt {
+    font-size: 0.5em;
+    line-height: 1;
+  }
+
+  .print-area {
+    width: 100%;
+    max-width: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  ruby {
+    break-inside: avoid;
   }
 }
