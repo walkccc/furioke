@@ -16,6 +16,7 @@ export const LANGUAGE_LABEL: Record<Language, string> = {
 export interface Translations {
   generate: string;
   analyzing: string;
+  revert: string;
   hideEditor: string;
   hidePreview: string;
   showBoth: string;
@@ -34,6 +35,7 @@ export const translations: Record<Language, Translations> = {
   en: {
     generate: 'Generate Furigana',
     analyzing: 'Analyzing…',
+    revert: 'Revert',
     hideEditor: 'Hide Editor',
     hidePreview: 'Hide Preview',
     showBoth: 'Show Both',
@@ -51,6 +53,7 @@ export const translations: Record<Language, Translations> = {
   'zh-tw': {
     generate: '生成振假名',
     analyzing: '分析中…',
+    revert: '還原',
     hideEditor: '隱藏編輯器',
     hidePreview: '隱藏預覽',
     showBoth: '顯示兩者',
@@ -68,6 +71,7 @@ export const translations: Record<Language, Translations> = {
   ja: {
     generate: '振り仮名を生成',
     analyzing: '解析中…',
+    revert: '元に戻す',
     hideEditor: '編集を隠す',
     hidePreview: 'プレビューを隠す',
     showBoth: '両方を表示',
