@@ -16,6 +16,10 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
 });
 
+export const viewport = {
+  maximumScale: 1,
+};
+
 export const metadata: Metadata = {
   title: 'Furioke — Japanese Lyrics with Furigana',
   description:
