@@ -6,6 +6,7 @@ import {
   Sparkles,
   SquareSplitHorizontal,
   Trash2,
+  Undo2,
   Upload,
 } from 'lucide-react';
 import { useRef } from 'react';
@@ -17,6 +18,8 @@ import { type Layout, useLanguage } from '@/lib/i18n';
 interface ToolbarProps {
   onGenerate: () => void;
   isAnalyzing: boolean;
+  canRevert: boolean;
+  onRevert: () => void;
   layout: Layout;
   onToggleLayout: () => void;
   onExport: () => void;
@@ -30,6 +33,8 @@ interface ToolbarProps {
 export function Toolbar({
   onGenerate,
   isAnalyzing,
+  canRevert,
+  onRevert,
   layout,
   onToggleLayout,
   onExport,
@@ -66,6 +71,16 @@ export function Toolbar({
                 <span className="hidden md:inline">{t.generate}</span>
               </>
             )}
+          </ToolbarButton>
+
+          <ToolbarButton
+            variant="outline"
+            onClick={onRevert}
+            disabled={!canRevert}
+            title={t.revert}
+          >
+            <Undo2 className="h-3.5 w-3.5 shrink-0" />
+            <span className="hidden md:inline">{t.revert}</span>
           </ToolbarButton>
 
           <Input
