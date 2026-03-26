@@ -1,3 +1,5 @@
+import { alignKanjiReadings } from '@/lib/kanji-alignment';
+
 const RUBY_RE = /｜([^｜\n]+)｜([^｜\n]+)｜/g;
 
 function escapeHtml(text: string): string {
@@ -9,6 +11,7 @@ function escapeHtml(text: string): string {
 }
 
 export function parseToHtml(raw: string): string {
+  raw = alignKanjiReadings(raw);
   const lines = raw.split('\n');
   return lines
     .map((line) => {
