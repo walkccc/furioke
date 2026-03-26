@@ -12,6 +12,7 @@ import {
   type Layout,
   translations,
 } from '@/lib/i18n';
+import { exportEpub } from '@/lib/epub';
 import { exportJson, importJson } from '@/lib/io';
 import { generateFurigana } from '@/lib/kuromoji-tokenizer';
 import { parseToHtml } from '@/lib/parser';
@@ -86,6 +87,10 @@ export default function Page() {
 
   function handleExport() {
     exportJson(title, lyrics);
+  }
+
+  function handleExportEpub() {
+    exportEpub(title, previewHtml);
   }
 
   const handleImportFile = useCallback(async (file: File) => {
@@ -190,6 +195,7 @@ ruby { break-inside: avoid; }
               onToggleLayout={cycleLayout}
               onExport={handleExport}
               onImport={handleImportFile}
+              onExportEpub={handleExportEpub}
               onPrint={handlePrint}
               onClear={handleClear}
               title={title}

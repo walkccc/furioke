@@ -1,6 +1,7 @@
 'use client';
 
 import {
+  BookOpen,
   Download,
   Printer,
   Sparkles,
@@ -24,6 +25,7 @@ interface ToolbarProps {
   onToggleLayout: () => void;
   onExport: () => void;
   onImport: (file: File) => void;
+  onExportEpub: () => void;
   onPrint: () => void;
   onClear: () => void;
   title: string;
@@ -39,6 +41,7 @@ export function Toolbar({
   onToggleLayout,
   onExport,
   onImport,
+  onExportEpub,
   onPrint,
   onClear,
   title,
@@ -128,6 +131,15 @@ export function Toolbar({
             >
               <Upload className="h-3.5 w-3.5 shrink-0" />
               <span className="hidden md:inline">{t.import}</span>
+            </ToolbarButton>
+
+            <ToolbarButton
+              variant="outline"
+              onClick={onExportEpub}
+              title={t.exportEpub}
+            >
+              <BookOpen className="h-3.5 w-3.5 shrink-0" />
+              <span className="hidden md:inline">{t.exportEpub}</span>
             </ToolbarButton>
 
             <ToolbarButton variant="outline" onClick={onPrint} title={t.print}>

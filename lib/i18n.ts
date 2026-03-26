@@ -21,6 +21,7 @@ export interface Translations {
   hidePreview: string;
   showBoth: string;
   export: string;
+  exportEpub: string;
   import: string;
   print: string;
   clear: string;
@@ -40,6 +41,7 @@ export const translations: Record<Language, Translations> = {
     hidePreview: 'Hide Preview',
     showBoth: 'Show Both',
     export: 'Export',
+    exportEpub: 'EPUB',
     import: 'Import',
     print: 'Print',
     clear: 'Clear',
@@ -58,6 +60,7 @@ export const translations: Record<Language, Translations> = {
     hidePreview: '隱藏預覽',
     showBoth: '顯示兩者',
     export: '匯出',
+    exportEpub: 'EPUB',
     import: '匯入',
     print: '列印',
     clear: '清除',
@@ -76,6 +79,7 @@ export const translations: Record<Language, Translations> = {
     hidePreview: 'プレビューを隠す',
     showBoth: '両方を表示',
     export: '書き出す',
+    exportEpub: 'EPUB',
     import: '読み込む',
     print: '印刷',
     clear: 'クリア',
