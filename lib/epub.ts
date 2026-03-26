@@ -222,7 +222,7 @@ ruby rt { font-size: 0.5em; line-height: 1; }
     },
   ]);
 
-  const blob = new Blob([zip], { type: 'application/epub+zip' });
+  const blob = new Blob([zip.buffer as ArrayBuffer], { type: 'application/epub+zip' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
