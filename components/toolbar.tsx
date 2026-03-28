@@ -5,6 +5,7 @@ import {
   Copy,
   Download,
   EllipsisVertical,
+  Languages,
   Printer,
   Sparkles,
   SquareSplitHorizontal,
@@ -23,7 +24,10 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Input } from '@/components/ui/input';
+import { buttonVariants } from '@/components/ui/button';
 import { type Layout, useLanguage } from '@/lib/i18n';
+import { type TranslationTarget } from '@/lib/translate';
+import { cn } from '@/lib/utils';
 
 interface ToolbarProps {
   onGenerate: () => void;
@@ -38,6 +42,7 @@ interface ToolbarProps {
   onPrint: () => void;
   onCopyRawText: () => void;
   onClear: () => void;
+  onTranslate: (target: TranslationTarget) => void;
   title: string;
   onTitleChange: (title: string) => void;
 }
@@ -55,6 +60,7 @@ export function Toolbar({
   onPrint,
   onCopyRawText,
   onClear,
+  onTranslate,
   title,
   onTitleChange,
 }: ToolbarProps) {
@@ -123,6 +129,26 @@ export function Toolbar({
 
           {/* Full button row — visible on md+ */}
           <div className="hidden items-center gap-2 md:flex">
+            <DropdownMenu>
+              <DropdownMenuTrigger
+                className={cn(
+                  buttonVariants({ variant: 'outline', size: 'sm' }),
+                  'w-10 cursor-pointer gap-1.5 md:w-auto',
+                )}
+              >
+                <Languages className="h-3.5 w-3.5 shrink-0" />
+                <span>{t.translate}</span>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem onClick={() => onTranslate('en')}>
+                  {t.translateToEn}
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => onTranslate('zh-TW')}>
+                  {t.translateToZhTw}
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+
             <ToolbarButton
               variant="outline"
               onClick={onExport}
@@ -181,6 +207,15 @@ export function Toolbar({
                 <EllipsisVertical className="h-3.5 w-3.5" />
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
+                <DropdownMenuItem onClick={() => onTranslate('en')}>
+                  <Languages className="h-4 w-4" />
+                  {t.translateToEn}
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => onTranslate('zh-TW')}>
+                  <Languages className="h-4 w-4" />
+                  {t.translateToZhTw}
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={onExport}>
                   <Download className="h-4 w-4" />
                   {t.export}

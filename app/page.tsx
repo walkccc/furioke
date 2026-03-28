@@ -6,6 +6,7 @@ import { EditorPane } from '@/components/editor-pane';
 import { LayoutShell } from '@/components/layout-shell';
 import { PreviewPane } from '@/components/preview-pane';
 import { Toolbar } from '@/components/toolbar';
+import { TranslationDialog } from '@/components/translation-dialog';
 import { exportEpub } from '@/lib/epub';
 import {
   type Language,
@@ -16,6 +17,7 @@ import {
 import { exportJson, importJson } from '@/lib/io';
 import { generateFurigana } from '@/lib/kuromoji-tokenizer';
 import { parseToHtml } from '@/lib/parser';
+import { translateLyrics, type TranslationTarget } from '@/lib/translate';
 
 export default function Page() {
   const [lyrics, setLyrics] = useState<string>('');
@@ -24,6 +26,12 @@ export default function Page() {
   const [isAnalyzing, setIsAnalyzing] = useState<boolean>(false);
   const [language, setLanguage] = useState<Language>('ja');
   const [isDragging, setIsDragging] = useState(false);
+  const [translationOpen, setTranslationOpen] = useState(false);
+  const [translationTarget, setTranslationTarget] =
+    useState<TranslationTarget>('en');
+  const [translationResult, setTranslationResult] = useState('');
+  const [isTranslating, setIsTranslating] = useState(false);
+  const [translationError, setTranslationError] = useState('');
   const hydrated = useRef(false);
   const dragCounter = useRef(0);
 
@@ -151,6 +159,22 @@ ruby { break-inside: avoid; }
     setLyrics('');
   }
 
+  async function handleTranslate(target: TranslationTarget) {
+    setTranslationTarget(target);
+    setTranslationResult('');
+    setTranslationError('');
+    setTranslationOpen(true);
+    setIsTranslating(true);
+    try {
+      const result = await translateLyrics(lyrics, target);
+      setTranslationResult(result);
+    } catch {
+      setTranslationError(t.translationError);
+    } finally {
+      setIsTranslating(false);
+    }
+  }
+
   function handleDragEnter(e: React.DragEvent) {
     e.preventDefault();
     dragCounter.current++;
@@ -204,6 +228,7 @@ ruby { break-inside: avoid; }
               onPrint={handlePrint}
               onCopyRawText={handleCopyRawText}
               onClear={handleClear}
+              onTranslate={handleTranslate}
               title={title}
               onTitleChange={setTitle}
             />
@@ -216,6 +241,15 @@ ruby { break-inside: avoid; }
             />
           }
           preview={<PreviewPane html={previewHtml} />}
+        />
+
+        <TranslationDialog
+          open={translationOpen}
+          onClose={() => setTranslationOpen(false)}
+          target={translationTarget}
+          result={translationResult}
+          isTranslating={isTranslating}
+          error={translationError}
         />
 
         {isDragging && (

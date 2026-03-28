@@ -31,6 +31,13 @@ export interface Translations {
   previewEmpty: string;
   footerText: string;
   dropOverlay: string;
+  translate: string;
+  translating: string;
+  translateToEn: string;
+  translateToZhTw: string;
+  translationResult: string;
+  copyTranslation: string;
+  translationError: string;
 }
 
 export const translations: Record<Language, Translations> = {
@@ -53,6 +60,13 @@ export const translations: Record<Language, Translations> = {
     previewEmpty: 'Preview will appear here...',
     footerText: '© 2026 Furioke — Japanese lyrics with furigana (振り仮名)',
     dropOverlay: 'Drop JSON file to import',
+    translate: 'Translate',
+    translating: 'Translating…',
+    translateToEn: 'To English',
+    translateToZhTw: 'To Traditional Chinese',
+    translationResult: 'Translation',
+    copyTranslation: 'Copy',
+    translationError: 'Translation failed. Please try again.',
   },
   'zh-tw': {
     generate: '生成振假名',
@@ -73,6 +87,13 @@ export const translations: Record<Language, Translations> = {
     previewEmpty: '預覽將顯示在此處⋯⋯',
     footerText: '© 2026 Furioke — 帶振り仮名的日語歌詞',
     dropOverlay: '拖放 JSON 檔案以匯入',
+    translate: '翻譯',
+    translating: '翻譯中…',
+    translateToEn: '翻譯為英文',
+    translateToZhTw: '翻譯為繁體中文',
+    translationResult: '翻譯結果',
+    copyTranslation: '複製',
+    translationError: '翻譯失敗，請再試一次。',
   },
   ja: {
     generate: '振り仮名を生成',
@@ -93,6 +114,13 @@ export const translations: Record<Language, Translations> = {
     previewEmpty: 'プレビューがここに表示されます⋯',
     footerText: '© 2026 Furioke — 振り仮名付き日本語歌詞',
     dropOverlay: 'JSON ファイルをドロップして読み込む',
+    translate: '翻訳',
+    translating: '翻訳中…',
+    translateToEn: '英語へ',
+    translateToZhTw: '繁体字中国語へ',
+    translationResult: '翻訳結果',
+    copyTranslation: 'コピー',
+    translationError: '翻訳に失敗しました。もう一度お試しください。',
   },
 };
 
